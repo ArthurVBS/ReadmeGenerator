@@ -42,7 +42,13 @@ public class StatusMenu {
       int option = scan.nextInt();
 
       if (option > -1 && option < statusOption.length) {
-        statusSelected = statusOption[option][1];
+        if (StatusEnum.Working.name().equals(statusOption[option][1])) {
+          statusSelected = "\uD83D\uDEA7 Project in progress... \uD83D\uDEE0";
+        } else if (StatusEnum.Finished.name().equals(statusOption[option][1])) {
+          statusSelected = "Finished project ✔";
+        } else {
+          throw new IllegalStateException("Unexpected value: " + statusOption[option][1]);
+        }
         break;
       }
     }

@@ -2,6 +2,8 @@ package com.generator.readme;
 
 import com.generator.readme.templeate.Footer;
 import com.generator.readme.templeate.Header;
+import com.generator.readme.templeate.Main;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 public class Repository {
 
   private String name;
+
+  private String github;
 
   private ArrayList<String> badges;
 
@@ -33,9 +37,6 @@ public class Repository {
 
   @Override
   public String toString() {
-
-    String toReturn = Header.toSave(name, badges) + Footer.toSave(author);
-
-    return toReturn;
+    return Header.toSave(name, badges) + Main.toSave(status, license, github) + Footer.toSave(author);
   }
 }
