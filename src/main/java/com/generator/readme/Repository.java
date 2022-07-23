@@ -1,5 +1,6 @@
 package com.generator.readme;
 
+import com.generator.readme.templeate.Header;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,4 +30,9 @@ public class Repository {
 
   private String author;
 
+  @Override
+  public String toString() {
+
+    return Header.toSave(name, badges);
+  }
 }
