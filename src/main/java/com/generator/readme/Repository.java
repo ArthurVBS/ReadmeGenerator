@@ -1,5 +1,6 @@
 package com.generator.readme;
 
+import com.generator.readme.templeate.Footer;
 import com.generator.readme.templeate.Header;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,6 +34,8 @@ public class Repository {
   @Override
   public String toString() {
 
-    return Header.toSave(name, badges);
+    String toReturn = Header.toSave(name, badges) + Footer.toSave(author);
+
+    return toReturn;
   }
 }
