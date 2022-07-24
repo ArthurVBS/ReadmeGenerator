@@ -3,7 +3,6 @@ package com.generator.readme.templeate;
 public class Footer {
 
   public static String toSave(String author){
-
     final String emoji = "\uD83D\uDC68\uD83C\uDFFD\u200D\uD83D\uDCBB";
     final String imageURL = "https://avatars.githubusercontent.com/u/84406367?v=4";
     final String githubURL = "https://github.com/ArthurVBS";
