@@ -2,11 +2,12 @@ package com.generator.readme.templeate;
 
 public class Main {
 
-  public static String toSave(String status, String license, String github){
+  public static String toSave(String status, String license, String github, String howToRun){
     String statusSection = getStatusSection(status);
+    String howToRunSection = getHowToRunSection(howToRun, github);
     String licenseSection = getLicenseSection(license, github);
 
-    return statusSection + licenseSection;
+    return statusSection + howToRunSection + licenseSection;
   }
 
   private static String getStatusSection(String status){
@@ -24,5 +25,98 @@ public class Main {
     return licenseSection;
   }
 
+  private static String getHowToRunSection(String howToRun, String github){
+    String toReturn = "\n## \uD83D\uDE80 How to run the application?\n\n";
+    toReturn += getHowToRunCommands(howToRun, github);
 
+    return toReturn;
+  }
+
+  private static String getHowToRunCommands(String howToRun, String github){
+    final String appURL = String.format("https://arthurvbs.github.io/%s/", github);
+
+    String viteAppCommands = String.format(
+        """
+        -  Go to the [application website](%s)
+        
+          `or`
+          
+        - 💻 Download the ZIP or Clone the application on your machine;
+          - Open a CMD in the root of the project folder,
+          - Install node/react modules: `npm install`,
+          - Finally, start a localhost: `npm run dev`.
+        """
+        , appURL);
+
+    String createReactAppCommands = String.format(
+        """
+        -  Go to the [application website](%s)
+        
+          `or`
+          
+        - 💻 Download the ZIP or Clone the application on your machine;
+          - Open a CMD in the root of the project folder,
+          - Install node/react modules: `npm install`,
+          - Finally, start a localhost: `npm start`.
+        """
+        , appURL);
+
+
+    String springAppCommands =
+        """
+        - 💻 Download the ZIP or Clone the application on your machine;
+          - Create your database with your username and password,
+          - Change the database settings in `application-test.properties`,
+          - Open a CMD in the root of the project folder,
+          - Start the Spring project with Maven: `mvn spring-boot:run`.
+        """;
+
+    String mavenAppCommands =
+        """
+        - 💻 Download the ZIP or Clone the application on your machine;
+          - Open a CMD in the root of the project folder,
+          - Start the Maven app: `???`.
+        """;
+
+    String viteSpringAppCommands = String.format(
+        """
+        -  Go to the [application website](%s)
+        
+          `or`
+          
+        - 💻 Download the ZIP or Clone the application on your machine;
+        - 🎨 Frontend
+          - Open CMD and navigate to 'frontend' folder: `cd frontend`,
+          - Install node/react modules: `npm install`,
+          - Finally, start a localhost: `npm run dev`.
+        - 🎲 Backend
+          - Create your database with your username and password,
+          - Change the database settings in `application-test.properties`,
+          - Open another CMD in the root of the project folder,
+          - Navigate to 'backend' folder: `cd backend`,
+          - Start the Spring project with Maven: `mvn spring-boot:run`.
+        """
+        , appURL);
+
+    String vanillaJSAppCommands = String.format(
+        """
+         -  Go to the [application website](%s)
+         
+           `or`
+           
+         - 💻 Download the ZIP or Clone the application on your machine;
+           - Open the folder and double click on `index.html`.
+         """
+    , appURL);
+
+    return switch (howToRun){
+      case "VITE_APP" -> viteAppCommands;
+      case "CREATE_REACT_APP" -> createReactAppCommands;
+      case "SPRING_APP" -> springAppCommands;
+      case "MAVEN_APP" -> mavenAppCommands;
+      case "VITE_SPRING_APP" -> viteSpringAppCommands;
+      case "VANILLA_JS_APP" -> vanillaJSAppCommands;
+      default -> "";
+    };
+  }
 }

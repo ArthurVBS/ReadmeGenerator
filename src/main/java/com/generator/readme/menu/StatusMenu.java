@@ -8,23 +8,23 @@ public class StatusMenu {
 
   private static String[][] getOptions(){
     final int SIZE = StatusEnum.values().length;
-    String[][] statusOption = new String[SIZE][2];
+    String[][] options = new String[SIZE][2];
 
-    for (StatusEnum statusEnum: StatusEnum.values()) {
-      statusOption[statusEnum.ordinal()][0] = String.valueOf(statusEnum.ordinal());
-      statusOption[statusEnum.ordinal()][1] = statusEnum.name();
+    for (StatusEnum option: StatusEnum.values()) {
+      options[option.ordinal()][0] = String.valueOf(option.ordinal());
+      options[option.ordinal()][1] = option.name();
     }
 
-    return statusOption;
+    return  options;
   }
 
-  private static void displayOptions(String[][] statusOption){
+  private static void displayOptions(String[][] options, String question){
     final String ANSI_RESET = "\u001B[0m";
     final String ANSI_GREEN = "\u001B[32m";
 
-    System.out.println(ANSI_GREEN + "\n-> Repo Status?" + ANSI_RESET);
-    for (String[] status : statusOption) {
-      System.out.print("[" + status[0] + "] " + status[1] + ", ");
+    System.out.printf(ANSI_GREEN + "\n-> Repo %s?\n" + ANSI_RESET, question);
+    for (String[] option : options) {
+      System.out.print("[" + option[0] + "] " + option[1] + ", ");
     }
 
     System.out.print("\n>>> ");
@@ -33,26 +33,26 @@ public class StatusMenu {
   public static String display(){
     Scanner scan = new Scanner(System.in);
 
-    String[][] statusOption = getOptions();
-    String statusSelected;
+    String[][] options = getOptions();
+    String optionSelected;
 
     while (true){
-      displayOptions(statusOption);
+      displayOptions(options, "Status");
 
       int option = scan.nextInt();
 
-      if (option > -1 && option < statusOption.length) {
-        if (StatusEnum.Working.name().equals(statusOption[option][1])) {
-          statusSelected = "\uD83D\uDEA7 Project in progress... \uD83D\uDEE0";
-        } else if (StatusEnum.Finished.name().equals(statusOption[option][1])) {
-          statusSelected = "Finished project ✔";
+      if (option > -1 && option < options.length) {
+        if (StatusEnum.Working.name().equals(options[option][1])) {
+          optionSelected = "\uD83D\uDEA7 Project in progress... \uD83D\uDEE0";
+        } else if (StatusEnum.Finished.name().equals(options[option][1])) {
+          optionSelected = "Finished project ✔";
         } else {
-          throw new IllegalStateException("Unexpected value: " + statusOption[option][1]);
+          throw new IllegalStateException("Unexpected value: " + options[option][1]);
         }
         break;
       }
     }
 
-    return statusSelected;
+    return optionSelected;
   }
 }

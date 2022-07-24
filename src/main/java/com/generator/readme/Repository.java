@@ -31,12 +31,14 @@ public class Repository {
 
   private ArrayList<String> prerequisites;
 
+  private String howToRun;
+
   private String license;
 
   private String author;
 
   @Override
   public String toString() {
-    return Header.toSave(name, license, badges) + Main.toSave(status, license, github) + Footer.toSave(author);
+    return Header.toSave(name, license, badges) + Main.toSave(status, license, github, howToRun) + Footer.toSave(author);
   }
 }

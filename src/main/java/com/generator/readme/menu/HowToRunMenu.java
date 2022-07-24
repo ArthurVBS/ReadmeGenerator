@@ -1,16 +1,16 @@
 package com.generator.readme.menu;
 
-import com.generator.readme.enums.LicenseEnum;
+import com.generator.readme.enums.HowToRunEnum;
 
 import java.util.Scanner;
 
-public class LicenseMenu {
+public class HowToRunMenu {
 
   private static String[][] getOptions(){
-    final int SIZE = LicenseEnum.values().length;
+    final int SIZE = HowToRunEnum.values().length;
     String[][] options = new String[SIZE][2];
 
-    for (LicenseEnum option: LicenseEnum.values()) {
+    for (HowToRunEnum option: HowToRunEnum.values()) {
       options[option.ordinal()][0] = String.valueOf(option.ordinal());
       options[option.ordinal()][1] = option.name();
     }
@@ -37,18 +37,12 @@ public class LicenseMenu {
     String optionSelected;
 
     while (true){
-      displayOptions(options, "License");
+      displayOptions(options, "How to Run");
 
       int option = scan.nextInt();
 
       if (option > -1 && option < options.length) {
-        if (LicenseEnum.MIT.name().equals(options[option][1])) {
-          optionSelected = "MIT";
-        } else if (LicenseEnum.GNU_GPLv3.name().equals(options[option][1])) {
-          optionSelected = "GNU GPLv3";
-        } else {
-          throw new IllegalStateException("Unexpected value: " + options[option][1]);
-        }
+        optionSelected = options[option][1];
         break;
       }
     }

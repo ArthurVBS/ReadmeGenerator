@@ -16,6 +16,8 @@ public class Generate {
 
       writer.write(repo.toString());
       writer.close();
+
+      System.out.println("\n -> Readme generated successfully <- \n");
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
