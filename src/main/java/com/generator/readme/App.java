@@ -9,8 +9,8 @@ public class App {
     public static void main( String[] args ) {
         Repository repo = new Repository();
 
-        repo.setName("Login System");
-        repo.setGithub("LoginSystem");
+        repo.setName("Readme Generator");
+        repo.setGithub("ReadmeGenerator");
         repo.setAuthor("Arthur V.B.S.");
 
         repo.setLicense(LicenseMenu.display());
