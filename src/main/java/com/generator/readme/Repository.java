@@ -39,6 +39,8 @@ public class Repository {
 
   @Override
   public String toString() {
-    return Header.toSave(name, license, badges) + Main.toSave(status, license, github, howToRun) + Footer.toSave(author);
+    return Header.toSave(name, license, badges)
+         + Main.toSave(status, license, github, howToRun, features)
+         + Footer.toSave(author);
   }
 }

@@ -1,13 +1,16 @@
 package com.generator.readme.templeate;
 
+import java.util.ArrayList;
+
 public class Main {
 
-  public static String toSave(String status, String license, String github, String howToRun){
+  public static String toSave(String status, String license, String github, String howToRun, ArrayList<String> features){
     String statusSection = getStatusSection(status);
+    String featuresSection = getFeaturesSection(features);
     String howToRunSection = getHowToRunSection(howToRun, github);
     String licenseSection = getLicenseSection(license, github);
 
-    return statusSection + howToRunSection + licenseSection;
+    return statusSection + featuresSection + howToRunSection + licenseSection;
   }
 
   private static String getStatusSection(String status){
@@ -15,6 +18,15 @@ public class Main {
     statusSection += String.format("- %s\n", status);
 
     return statusSection;
+  }
+
+  private static String getFeaturesSection(ArrayList<String> features) {
+    StringBuilder featuresSection = new StringBuilder("\n## \uD83D\uDCDD Features:\n\n");
+    for (String feature : features) {
+      featuresSection.append(String.format("- %s\n", feature));
+    }
+
+    return featuresSection.toString();
   }
 
   private static String getLicenseSection(String license, String github){
