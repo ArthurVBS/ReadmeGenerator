@@ -4,33 +4,33 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class FeaturesMenu {
-  private static void displayMenu(String title){
+public class ListMenu {
+  private static void displayMenu(String title, String question){
     final String ANSI_RESET = "\u001B[0m";
     final String ANSI_GREEN = "\u001B[32m";
     final String ANSI_BLUE = "\u001B[34m";
 
-    System.out.print(ANSI_GREEN + "\n-> Repo Features" + ANSI_RESET);
+    System.out.printf(ANSI_GREEN + "\n-> Repo %s" + ANSI_RESET, question);
 
     System.out.println(Objects.equals(title, "add")
-            ? ANSI_BLUE + " - Add Feature? [y/n]" + ANSI_RESET
-            : ANSI_BLUE + " - Type a new Feature..." + ANSI_RESET);
+            ? String.format(ANSI_BLUE + " - Add %s? [y/n]" + ANSI_RESET, question)
+            : String.format(ANSI_BLUE + " - Type a new %s..." + ANSI_RESET, question));
 
     System.out.print(">>> ");
   }
 
-  public static ArrayList<String> display(){
+  public static ArrayList<String> display(String question){
     Scanner scan = new Scanner(System.in);
     ArrayList<String> selected = new ArrayList<>();
 
     do {
-      displayMenu("add");
+      displayMenu("add", question);
       String option = scan.nextLine();
 
       if (Objects.equals(option, "n")){
         break;
       } else if (Objects.equals(option, "y")) {
-        displayMenu("type");
+        displayMenu("type", question);
         selected.add(scan.nextLine());
       }
     } while (true);

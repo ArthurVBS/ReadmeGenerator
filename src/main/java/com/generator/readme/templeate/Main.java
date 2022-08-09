@@ -4,13 +4,23 @@ import java.util.ArrayList;
 
 public class Main {
 
-  public static String toSave(String status, String license, String github, String howToRun, ArrayList<String> features){
+  public static String toSave(ArrayList<String> about, String status, String license, String github, String howToRun, ArrayList<String> features){
+    String aboutSection = getAboutSection(about);
     String statusSection = getStatusSection(status);
     String featuresSection = getFeaturesSection(features);
     String howToRunSection = getHowToRunSection(howToRun, github);
     String licenseSection = getLicenseSection(license, github);
 
-    return statusSection + featuresSection + howToRunSection + licenseSection;
+    return aboutSection + statusSection + featuresSection + howToRunSection + licenseSection;
+  }
+
+  private static String getAboutSection(ArrayList<String> about){
+    StringBuilder aboutSection = new StringBuilder("\n## ✨ About the project:\n\n");
+    for (String abt : about){
+      aboutSection.append(String.format("- %s\n", abt));
+    }
+
+    return aboutSection.toString();
   }
 
   private static String getStatusSection(String status){

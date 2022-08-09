@@ -12,9 +12,10 @@ public class App {
         repo.setName(QuestionMenu.display("Name"));
         repo.setGithub(QuestionMenu.display("Github"));
         repo.setLicense(LicenseMenu.display());
+        repo.setAbout(ListMenu.display("About"));
         repo.setBadges(BadgesMenu.display());
         repo.setStatus(StatusMenu.display());
-        repo.setFeatures(FeaturesMenu.display());
+        repo.setFeatures(ListMenu.display("Features"));
         repo.setHowToRun(HowToRunMenu.display());
 
         Generate.write(repo);
