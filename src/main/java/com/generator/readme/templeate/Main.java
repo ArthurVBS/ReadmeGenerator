@@ -4,14 +4,17 @@ import java.util.ArrayList;
 
 public class Main {
 
-  public static String toSave(ArrayList<String> about, String status, String license, String github, String howToRun, ArrayList<String> features){
+  public static String toSave(ArrayList<String> about, String status, ArrayList<String> technologies, String license, String github, String howToRun, ArrayList<String> features){
     String aboutSection = getAboutSection(about);
     String statusSection = getStatusSection(status);
+    String technologiesSection = getTechnologiesSection(technologies);
     String featuresSection = getFeaturesSection(features);
     String howToRunSection = getHowToRunSection(howToRun, github);
     String licenseSection = getLicenseSection(license, github);
 
-    return aboutSection + statusSection + featuresSection + howToRunSection + licenseSection;
+    return aboutSection + statusSection
+            + technologiesSection + featuresSection
+            + howToRunSection + licenseSection;
   }
 
   private static String getAboutSection(ArrayList<String> about){
@@ -28,6 +31,15 @@ public class Main {
     statusSection += String.format("- %s\n", status);
 
     return statusSection;
+  }
+
+  private static String getTechnologiesSection(ArrayList<String> technologies){
+    StringBuilder technologiesSection = new StringBuilder("\n## \uD83D\uDEE0 Technologies:\n\n");
+    for (String tech : technologies){
+      technologiesSection.append(String.format("- %s\n", tech));
+    }
+
+    return technologiesSection.toString();
   }
 
   private static String getFeaturesSection(ArrayList<String> features) {
