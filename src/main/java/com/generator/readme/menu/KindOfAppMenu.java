@@ -1,16 +1,16 @@
 package com.generator.readme.menu;
 
-import com.generator.readme.enums.HowToRunEnum;
+import com.generator.readme.enums.KindOfAppEnum;
 
 import java.util.Scanner;
 
-public class HowToRunMenu {
+public class KindOfAppMenu {
 
   private static String[][] getOptions(){
-    final int SIZE = HowToRunEnum.values().length;
+    final int SIZE = KindOfAppEnum.values().length;
     String[][] options = new String[SIZE][2];
 
-    for (HowToRunEnum option: HowToRunEnum.values()) {
+    for (KindOfAppEnum option: KindOfAppEnum.values()) {
       options[option.ordinal()][0] = String.valueOf(option.ordinal());
       options[option.ordinal()][1] = option.name();
     }
@@ -18,11 +18,11 @@ public class HowToRunMenu {
     return  options;
   }
 
-  private static void displayOptions(String[][] options, String question){
+  private static void displayOptions(String[][] options){
     final String ANSI_RESET = "\u001B[0m";
     final String ANSI_GREEN = "\u001B[32m";
 
-    System.out.printf(ANSI_GREEN + "\n-> Repo %s?\n" + ANSI_RESET, question);
+    System.out.printf(ANSI_GREEN + "\n-> Repo kind of App?\n" + ANSI_RESET);
     for (String[] option : options) {
       System.out.print("[" + option[0] + "] " + option[1] + ", ");
     }
@@ -37,7 +37,7 @@ public class HowToRunMenu {
     String optionSelected;
 
     while (true){
-      displayOptions(options, "How to Run");
+      displayOptions(options);
 
       int option = scan.nextInt();
 

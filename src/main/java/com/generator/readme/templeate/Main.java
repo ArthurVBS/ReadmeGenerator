@@ -4,17 +4,21 @@ import java.util.ArrayList;
 
 public class Main {
 
-  public static String toSave(ArrayList<String> about, String status, ArrayList<String> technologies, String license, String github, String howToRun, ArrayList<String> features){
+  public static String toSave(ArrayList<String> about, String status,
+                              ArrayList<String> technologies, String license,
+                              String github, String prerequisites, String howToRun,
+                              ArrayList<String> features){
+
     String aboutSection = getAboutSection(about);
     String statusSection = getStatusSection(status);
     String technologiesSection = getTechnologiesSection(technologies);
     String featuresSection = getFeaturesSection(features);
+    String prerequisitesSection = getPrerequisitesSection(prerequisites);
     String howToRunSection = getHowToRunSection(howToRun, github);
     String licenseSection = getLicenseSection(license, github);
 
-    return aboutSection + statusSection
-            + technologiesSection + featuresSection
-            + howToRunSection + licenseSection;
+    return aboutSection + statusSection + technologiesSection + featuresSection
+            + prerequisitesSection + howToRunSection + licenseSection;
   }
 
   private static String getAboutSection(ArrayList<String> about){
@@ -50,6 +54,71 @@ public class Main {
 
     return featuresSection.toString();
   }
+
+  private static String getPrerequisitesSection(String prerequisites){
+    String toReturn = "\n## ⚙️ Prerequisites:\n\n";
+    toReturn += getPrerequisitesCommands(prerequisites);
+
+    return toReturn;
+  }
+
+  private static String getPrerequisitesCommands(String prerequisites){
+
+    String viteAppPrerequisites =
+            """
+            - Internet access - Browser
+            
+            - Nodejs
+            """;
+
+    String createReactAppPrerequisites =
+            """
+            - Internet access - Browser
+            
+            - Nodejs
+            """;
+
+    String springAppPrerequisites =
+            """
+            - Java
+            
+            - Maven
+            """;
+
+    String mavenAppPrerequisites =
+            """
+            - Java
+            
+            - Maven
+            """;
+
+    String viteSpringAppPrerequisites =
+            """
+            - Internet access - Browser
+                        
+            - Node.js
+                        
+            - Java
+                        
+            - Maven
+            """;
+
+    String vanillaJSAppPrerequisites =
+            """
+            - Internet access - Browser
+            """;
+
+    return switch (prerequisites){
+      case "VITE_APP" -> viteAppPrerequisites;
+      case "CREATE_REACT_APP" -> createReactAppPrerequisites;
+      case "SPRING_APP" -> springAppPrerequisites;
+      case "MAVEN_APP" -> mavenAppPrerequisites;
+      case "VITE_SPRING_APP" -> viteSpringAppPrerequisites;
+      case "VANILLA_JS_APP" -> vanillaJSAppPrerequisites;
+      default -> "";
+    };
+  }
+
 
   private static String getLicenseSection(String license, String github){
     final String licenseURL = String.format("https://github.com/ArthurVBS/%s/blob/main/LICENSE", github);

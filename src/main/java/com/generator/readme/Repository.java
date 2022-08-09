@@ -29,7 +29,7 @@ public class Repository {
 
   private ArrayList<String> features;
 
-  private ArrayList<String> prerequisites;
+  private String prerequisites;
 
   private String howToRun;
 
@@ -40,7 +40,7 @@ public class Repository {
   @Override
   public String toString() {
     return Header.toSave(name, license, badges)
-         + Main.toSave(about, status, technologies, license, github, howToRun, features)
+         + Main.toSave(about, status, technologies, license, github, prerequisites, howToRun, features)
          + Footer.toSave(author);
   }
 }

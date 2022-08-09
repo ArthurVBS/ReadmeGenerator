@@ -28,7 +28,11 @@ public class App {
         // Others
         repo.setStatus(StatusMenu.display());
         repo.setFeatures(ListMenu.display("Features"));
-        repo.setHowToRun(HowToRunMenu.display());
+
+        // How to Run & Prerequisites
+        String kindOfApp = KindOfAppMenu.display();
+        repo.setPrerequisites(kindOfApp);
+        repo.setHowToRun(kindOfApp);
 
         Generate.write(repo);
     }
