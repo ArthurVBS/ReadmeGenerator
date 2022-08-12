@@ -177,8 +177,8 @@ public class Main {
     String mavenAppCommands =
         """
         - 💻 Download the ZIP or Clone the application on your machine;
-          - Open a CMD in the root of the project folder,
-          - Start the Maven app: `???`.
+          - Open a CMD in the root of the project folder and run `mvn clean install`,
+          - Start the Maven app: `java -cp target/readmeGenerator-1.0-SNAPSHOT.jar com.generator.readme.App`.
         """;
 
     String viteSpringAppCommands = String.format(
